@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'bookings/create'
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :restaurants do
+        resources :bookings, only: :create
+      end
+    end
+  end
+
 end

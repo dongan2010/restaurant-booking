@@ -1,0 +1,717 @@
+  [1m[35m (530.2ms)[0m  [1m[35mCREATE DATABASE "restaurant_booking_dev" ENCODING = 'utf8'[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (372.0ms)[0m  [1m[35mCREATE DATABASE "restaurant_booking_test" ENCODING = 'utf8'[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (43.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3528838131843854760)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+Migrating to CreateRestaurants (20190618143155)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3528838131843854760)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3528838131843854760)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+Migrating to CreateRestaurants (20190618143155)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "restaurants" ("id" bigserial primary key)[0m
+  ↳ db/migrate/20190618143155_create_restaurants.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (4.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190618143155"]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+Migrating to CreateTables (20190618143348)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "tables" ("id" bigserial primary key, "restaurant_id" bigint, "number" integer, CONSTRAINT "fk_rails_0700cfe41e"
+FOREIGN KEY ("restaurant_id")
+  REFERENCES "restaurants" ("id")
+)[0m
+  ↳ db/migrate/20190618143348_create_tables.rb:3
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_tables_on_restaurant_id" ON "tables"  ("restaurant_id")[0m
+  ↳ db/migrate/20190618143348_create_tables.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190618143348"]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+Migrating to CreateUsers (20190618143435)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying)[0m
+  ↳ db/migrate/20190618143435_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190618143435"]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+Migrating to CreateBookings (20190618143600)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (11.0ms)[0m  [1m[35mCREATE TABLE "bookings" ("id" bigserial primary key, "user_id" bigint, "time_from" timestamp, "time_to" timestamp, CONSTRAINT "fk_rails_ef0571f117"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20190618143600_create_bookings.rb:3
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_bookings_on_user_id" ON "bookings"  ("user_id")[0m
+  ↳ db/migrate/20190618143600_create_bookings.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190618143600"]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-06-18 14:49:24.780128"], ["updated_at", "2019-06-18 14:49:24.780128"]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3528838131843854760)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3528838131843854760)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+Migrating to CreateJoinTableBookingsTables (20190618145110)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "bookings_tables" ("booking_id" bigint, "table_id" bigint, CONSTRAINT "fk_rails_0930a2abae"
+FOREIGN KEY ("booking_id")
+  REFERENCES "bookings" ("id")
+, CONSTRAINT "fk_rails_ca99adb71b"
+FOREIGN KEY ("table_id")
+  REFERENCES "tables" ("id")
+)[0m
+  ↳ db/migrate/20190618145110_create_join_table_bookings_tables.rb:3
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_bookings_tables_on_booking_id" ON "bookings_tables"  ("booking_id")[0m
+  ↳ db/migrate/20190618145110_create_join_table_bookings_tables.rb:3
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX  "index_bookings_tables_on_table_id" ON "bookings_tables"  ("table_id")[0m
+  ↳ db/migrate/20190618145110_create_join_table_bookings_tables.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190618145110"]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (4.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3528838131843854760)[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRestaurant Create (2.8ms)[0m  [1m[32mINSERT INTO "restaurants" DEFAULT VALUES RETURNING "id"[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRestaurant Load (1.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTable Create (34.4ms)[0m  [1m[32mINSERT INTO "tables" ("restaurant_id") VALUES ($1) RETURNING "id"[0m  [["restaurant_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTable Load (0.5ms)[0m  [1m[34mSELECT  "tables".* FROM "tables" ORDER BY "tables"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTable Load (0.4ms)[0m  [1m[34mSELECT  "tables".* FROM "tables" ORDER BY "tables"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBooking Load (10.6ms)[0m  [1m[34mSELECT  "bookings".* FROM "bookings" INNER JOIN "bookings_tables" ON "bookings"."id" = "bookings_tables"."booking_id" WHERE "bookings_tables"."table_id" = $1 LIMIT $2[0m  [["table_id", 1], ["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (2.4ms)[0m  [1m[32mINSERT INTO "users" DEFAULT VALUES RETURNING "id"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBooking Create (1.1ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id") VALUES ($1) RETURNING "id"[0m  [["user_id", 1]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTable Load (0.4ms)[0m  [1m[34mSELECT  "tables".* FROM "tables" ORDER BY "tables"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTable Load (0.5ms)[0m  [1m[34mSELECT  "tables".* FROM "tables" ORDER BY "tables"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBooking Load (0.4ms)[0m  [1m[34mSELECT  "bookings".* FROM "bookings" ORDER BY "bookings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooking Load (0.4ms)[0m  [1m[34mSELECT "bookings".* FROM "bookings" INNER JOIN "bookings_tables" ON "bookings"."id" = "bookings_tables"."booking_id" WHERE "bookings_tables"."table_id" = $1[0m  [["table_id", 1]]
+  [1m[36mTable::HABTM_Bookings Create (1.0ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 1], ["table_id", 1]]
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTable Load (0.6ms)[0m  [1m[34mSELECT  "tables".* FROM "tables" ORDER BY "tables"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBooking Load (0.7ms)[0m  [1m[34mSELECT  "bookings".* FROM "bookings" INNER JOIN "bookings_tables" ON "bookings"."id" = "bookings_tables"."booking_id" WHERE "bookings_tables"."table_id" = $1 LIMIT $2[0m  [["table_id", 1], ["LIMIT", 11]]
+  [1m[36mBooking Load (0.5ms)[0m  [1m[34mSELECT  "bookings".* FROM "bookings" ORDER BY "bookings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBooking Load (0.5ms)[0m  [1m[34mSELECT  "bookings".* FROM "bookings" ORDER BY "bookings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTable Load (0.5ms)[0m  [1m[34mSELECT  "tables".* FROM "tables" INNER JOIN "bookings_tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE "bookings_tables"."booking_id" = $1 LIMIT $2[0m  [["booking_id", 1], ["LIMIT", 11]]
+Started POST "/api/v1/restaurants/1/booking" for ::1 at 2019-06-18 18:05:26 +0300
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/restaurants/1/booking"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `call'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:06:38 +0300
+  [1m[35m (10.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (uninitialized constant Api::BaseController):
+  
+app/controllers/api/v1/bookings_controller.rb:2:in `<top (required)>'
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:06:40 +0300
+  
+ActionController::RoutingError (uninitialized constant Api::BaseController):
+  
+app/controllers/api/v1/bookings_controller.rb:2:in `<top (required)>'
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:07:25 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"amount"=>"100", "restaurant_id"=>"1"}
+Unpermitted parameters: :amount, :format, :restaurant_id
+Unpermitted parameters: :amount, :format
+Completed 204 No Content in 476410ms (ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[36mTable Load (0.5ms)[0m  [1m[34mSELECT "tables".* FROM "tables"[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:8
+  [1m[36mTable::HABTM_Bookings Destroy (7.7ms)[0m  [1m[31mDELETE FROM "bookings_tables" WHERE "bookings_tables"."table_id" = $1[0m  [["table_id", 1]]
+  ↳ db/seeds.rb:8
+  [1m[36mTable Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tables" WHERE "tables"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:8
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:8
+  [1m[36mBooking Load (0.4ms)[0m  [1m[34mSELECT "bookings".* FROM "bookings"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mBooking::HABTM_Tables Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bookings_tables" WHERE "bookings_tables"."booking_id" = $1[0m  [["booking_id", 1]]
+  ↳ db/seeds.rb:9
+  [1m[36mBooking Destroy (0.4ms)[0m  [1m[31mDELETE FROM "bookings" WHERE "bookings"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mRestaurant Destroy (0.4ms)[0m  [1m[31mDELETE FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/bin/rake:23
+  [1m[36mTable Load (0.5ms)[0m  [1m[34mSELECT "tables".* FROM "tables"[0m
+  ↳ db/seeds.rb:2
+  [1m[36mBooking Load (0.4ms)[0m  [1m[34mSELECT "bookings".* FROM "bookings"[0m
+  ↳ db/seeds.rb:3
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ db/seeds.rb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:8
+  [1m[36mRestaurant Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurants" DEFAULT VALUES RETURNING "id"[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name") VALUES ($1, $2) RETURNING "id"[0m  [["first_name", "test"], ["last_name", "user"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" ORDER BY "restaurants"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mTable Create (0.5ms)[0m  [1m[32mINSERT INTO "tables" ("restaurant_id", "number") VALUES ($1, $2) RETURNING "id"[0m  [["restaurant_id", 2], ["number", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" ORDER BY "restaurants"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mTable Create (0.3ms)[0m  [1m[32mINSERT INTO "tables" ("restaurant_id", "number") VALUES ($1, $2) RETURNING "id"[0m  [["restaurant_id", 2], ["number", 2]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" ORDER BY "restaurants"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mTable Create (0.3ms)[0m  [1m[32mINSERT INTO "tables" ("restaurant_id", "number") VALUES ($1, $2) RETURNING "id"[0m  [["restaurant_id", 2], ["number", 3]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" ORDER BY "restaurants"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mTable Create (0.3ms)[0m  [1m[32mINSERT INTO "tables" ("restaurant_id", "number") VALUES ($1, $2) RETURNING "id"[0m  [["restaurant_id", 2], ["number", 4]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" ORDER BY "restaurants"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mTable Create (0.4ms)[0m  [1m[32mINSERT INTO "tables" ("restaurant_id", "number") VALUES ($1, $2) RETURNING "id"[0m  [["restaurant_id", 2], ["number", 5]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "tables"[0m
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:47:35 +0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  
+SyntaxError (/Users/sin/projects/restaurant-booking/app/controllers/api/v1/bookings_controller.rb:18: syntax error, unexpected ','
+...ermit(:restaurant_id, user_id:, :time_from, :time_to, table_...
+...                               ^
+/Users/sin/projects/restaurant-booking/app/controllers/api/v1/bookings_controller.rb:30: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/controllers/api/v1/bookings_controller.rb:18: syntax error, unexpected ','
+app/controllers/api/v1/bookings_controller.rb:30: syntax error, unexpected end-of-input, expecting keyword_end
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:47:58 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["1", "2"], "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (1.6ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2)[0m  [["number", 1], ["number", 2]]
+  ↳ lib/create_booking.rb:6
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:7
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:7
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:7
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:7
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ lib/create_booking.rb:7
+Completed 422 Unprocessable Entity in 18269ms (ActiveRecord: 17.3ms)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: User must exist):
+  
+lib/create_booking.rb:7:in `call'
+app/controllers/api/v1/bookings_controller.rb:6:in `create'
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:48:34 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["1", "2"], "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ (pry):5
+  [1m[36mTable Load (0.4ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2)[0m  [["number", 1], ["number", 2]]
+  ↳ lib/create_booking.rb:7
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:7
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:7
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:7
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:7
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ lib/create_booking.rb:7
+Completed 422 Unprocessable Entity in 77201ms (ActiveRecord: 1.9ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:58:10 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/sin/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["3", "2"], "user_id"=>"1", "time_to"=>"2019-06-30 17:50", "time_from"=>"2019-06-30 17:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (0.6ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2) AND "tables"."restaurant_id" = $3[0m  [["number", 3], ["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (4.3ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 17:20:00' AND time_from < '2019-06-30 17:50:00' OR (time_to > '2019-06-30 17:20:00' AND time_to <= '2019-06-30 17:50:00')) AND (tables.id IN (2,3)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 126ms (ActiveRecord: 27.7ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:58:16 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["3", "2"], "user_id"=>"1", "time_to"=>"2019-06-30 17:50", "time_from"=>"2019-06-30 18:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (28.5ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2) AND "tables"."restaurant_id" = $3[0m  [["number", 3], ["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 18:20:00' AND time_from < '2019-06-30 17:50:00' OR (time_to > '2019-06-30 18:20:00' AND time_to <= '2019-06-30 17:50:00')) AND (tables.id IN (2,3)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking Create (12.2ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id", "restaurant_id", "time_from", "time_to") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["restaurant_id", 1], ["time_from", "2019-06-30 18:20:00"], ["time_to", "2019-06-30 17:50:00"]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.8ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 18], ["table_id", 2]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.5ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 18], ["table_id", 3]]
+  ↳ lib/create_booking.rb:8
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/create_booking.rb:8
+Completed 201 Created in 84ms (ActiveRecord: 48.6ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:58:20 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["3", "2"], "user_id"=>"1", "time_to"=>"2019-06-30 18:50", "time_from"=>"2019-06-30 18:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (3.2ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2) AND "tables"."restaurant_id" = $3[0m  [["number", 3], ["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (37.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 18:20:00' AND time_from < '2019-06-30 18:50:00' OR (time_to > '2019-06-30 18:20:00' AND time_to <= '2019-06-30 18:50:00')) AND (tables.id IN (2,3)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 57ms (ActiveRecord: 41.2ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:58:33 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["3", "2"], "user_id"=>"1", "time_to"=>"2019-06-30 19:50", "time_from"=>"2019-06-30 19:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (21.5ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2) AND "tables"."restaurant_id" = $3[0m  [["number", 3], ["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 19:20:00' AND time_from < '2019-06-30 19:50:00' OR (time_to > '2019-06-30 19:20:00' AND time_to <= '2019-06-30 19:50:00')) AND (tables.id IN (2,3)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:8
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking Create (0.5ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id", "restaurant_id", "time_from", "time_to") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["restaurant_id", 1], ["time_from", "2019-06-30 19:20:00"], ["time_to", "2019-06-30 19:50:00"]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.5ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 19], ["table_id", 2]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.7ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 19], ["table_id", 3]]
+  ↳ lib/create_booking.rb:8
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/create_booking.rb:8
+Completed 201 Created in 61ms (ActiveRecord: 25.3ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:58:35 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["3", "2"], "user_id"=>"1", "time_to"=>"2019-06-30 19:50", "time_from"=>"2019-06-30 19:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (2.3ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2) AND "tables"."restaurant_id" = $3[0m  [["number", 3], ["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (30.7ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 19:20:00' AND time_from < '2019-06-30 19:50:00' OR (time_to > '2019-06-30 19:20:00' AND time_to <= '2019-06-30 19:50:00')) AND (tables.id IN (2,3)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 53ms (ActiveRecord: 33.9ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 18:58:41 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["4"], "user_id"=>"1", "time_to"=>"2019-06-30 19:50", "time_from"=>"2019-06-30 19:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (4.8ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 4], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (66.5ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (12.3ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 19:20:00' AND time_from < '2019-06-30 19:50:00' OR (time_to > '2019-06-30 19:20:00' AND time_to <= '2019-06-30 19:50:00')) AND (tables.id IN (4)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:8
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking Create (0.6ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id", "restaurant_id", "time_from", "time_to") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["restaurant_id", 1], ["time_from", "2019-06-30 19:20:00"], ["time_to", "2019-06-30 19:50:00"]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.5ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 20], ["table_id", 4]]
+  ↳ lib/create_booking.rb:8
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/create_booking.rb:8
+Completed 201 Created in 113ms (ActiveRecord: 86.1ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:03:57 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["4"], "user_id"=>"1", "time_to"=>"2019-06-30 19:50", "time_from"=>"2019-06-30 19:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (36.6ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 4], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (11.9ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (1.3ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 19:20:00' AND time_from < '2019-06-30 19:50:00' OR (time_to > '2019-06-30 19:20:00' AND time_to <= '2019-06-30 19:50:00')) AND (tables.id IN (4)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 76ms (ActiveRecord: 49.9ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:04:01 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["2"], "user_id"=>"1", "time_to"=>"2019-06-30 19:50", "time_from"=>"2019-06-30 19:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (3.4ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (0.5ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 19:20:00' AND time_from < '2019-06-30 19:50:00' OR (time_to > '2019-06-30 19:20:00' AND time_to <= '2019-06-30 19:50:00')) AND (tables.id IN (2)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 19ms (ActiveRecord: 4.6ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:04:09 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["2"], "time_to"=>"2019-06-30 19:50", "time_from"=>"2019-06-30 19:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (13.5ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (11.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (11.8ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 19:20:00' AND time_from < '2019-06-30 19:50:00' OR (time_to > '2019-06-30 19:20:00' AND time_to <= '2019-06-30 19:50:00')) AND (tables.id IN (2)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 62ms (ActiveRecord: 36.4ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:04:11 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["2"], "user_id"=>"1", "time_to"=>"2019-06-30 19:50", "time_from"=>"2019-06-30 19:20", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (1.0ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 2], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (1.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (4.6ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 19:20:00' AND time_from < '2019-06-30 19:50:00' OR (time_to > '2019-06-30 19:20:00' AND time_to <= '2019-06-30 19:50:00')) AND (tables.id IN (2)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 25ms (ActiveRecord: 6.9ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:06:32 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["1", "1"], "user_id"=>"1", "time_to"=>"2019-06-30 10:00", "time_from"=>"2019-06-30 10:30", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (7.1ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" IN ($1, $2) AND "tables"."restaurant_id" = $3[0m  [["number", 1], ["number", 1], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (20.6ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 10:30:00' AND time_from < '2019-06-30 10:00:00' OR (time_to > '2019-06-30 10:30:00' AND time_to <= '2019-06-30 10:00:00')) AND (tables.id IN (1)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:8
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking Create (0.6ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id", "restaurant_id", "time_from", "time_to") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["restaurant_id", 1], ["time_from", "2019-06-30 10:30:00"], ["time_to", "2019-06-30 10:00:00"]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.4ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 21], ["table_id", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/create_booking.rb:8
+Completed 201 Created in 66ms (ActiveRecord: 30.1ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:06:47 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["1"], "user_id"=>"1", "time_to"=>"2019-06-30 10:30", "time_from"=>"2019-06-30 11:00", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (3.6ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 1], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (11.6ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 11:00:00' AND time_from < '2019-06-30 10:30:00' OR (time_to > '2019-06-30 11:00:00' AND time_to <= '2019-06-30 10:30:00')) AND (tables.id IN (1)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:8
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking Create (0.6ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id", "restaurant_id", "time_from", "time_to") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["restaurant_id", 1], ["time_from", "2019-06-30 11:00:00"], ["time_to", "2019-06-30 10:30:00"]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.4ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 22], ["table_id", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/create_booking.rb:8
+Completed 201 Created in 48ms (ActiveRecord: 18.1ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:06:48 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["1"], "user_id"=>"1", "time_to"=>"2019-06-30 10:30", "time_from"=>"2019-06-30 11:00", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (28.8ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 1], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (20.2ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (9.9ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 11:00:00' AND time_from < '2019-06-30 10:30:00' OR (time_to > '2019-06-30 11:00:00' AND time_to <= '2019-06-30 10:30:00')) AND (tables.id IN (1)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+  [1m[35m (10.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:8
+  [1m[36mUser Load (18.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking Create (6.6ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id", "restaurant_id", "time_from", "time_to") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["restaurant_id", 1], ["time_from", "2019-06-30 11:00:00"], ["time_to", "2019-06-30 10:30:00"]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (0.4ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 23], ["table_id", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/create_booking.rb:8
+Completed 201 Created in 125ms (ActiveRecord: 95.4ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:06:50 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["1"], "user_id"=>"1", "time_to"=>"2019-06-30 10:30", "time_from"=>"2019-06-30 11:00", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (0.3ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 1], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (3.3ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 11:00:00' AND time_from < '2019-06-30 10:30:00' OR (time_to > '2019-06-30 11:00:00' AND time_to <= '2019-06-30 10:30:00')) AND (tables.id IN (1)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ lib/create_booking.rb:8
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mCACHE Restaurant Load (0.0ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking Create (0.4ms)[0m  [1m[32mINSERT INTO "bookings" ("user_id", "restaurant_id", "time_from", "time_to") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["restaurant_id", 1], ["time_from", "2019-06-30 11:00:00"], ["time_to", "2019-06-30 10:30:00"]]
+  ↳ lib/create_booking.rb:8
+  [1m[36mBooking::HABTM_Tables Create (1.3ms)[0m  [1m[32mINSERT INTO "bookings_tables" ("booking_id", "table_id") VALUES ($1, $2)[0m  [["booking_id", 24], ["table_id", 1]]
+  ↳ lib/create_booking.rb:8
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ lib/create_booking.rb:8
+Completed 201 Created in 46ms (ActiveRecord: 11.8ms)
+
+
+Started POST "/api/v1/restaurants/1/bookings" for ::1 at 2019-06-18 19:07:03 +0300
+Processing by Api::V1::BookingsController#create as JSON
+  Parameters: {"table_numbers"=>["1"], "user_id"=>"1", "time_to"=>"2019-06-30 11:00", "time_from"=>"2019-06-30 10:30", "restaurant_id"=>"1"}
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+Unpermitted parameter: :format
+  [1m[36mTable Load (6.3ms)[0m  [1m[34mSELECT "tables".* FROM "tables" WHERE "tables"."number" = $1 AND "tables"."restaurant_id" = $2[0m  [["number", 1], ["restaurant_id", 1]]
+  ↳ lib/create_booking.rb:4
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT  "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:18
+  [1m[36mBooking Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bookings" INNER JOIN "bookings_tables" ON "bookings_tables"."booking_id" = "bookings"."id" INNER JOIN "tables" ON "tables"."id" = "bookings_tables"."table_id" WHERE (time_from >= '2019-06-30 10:30:00' AND time_from < '2019-06-30 11:00:00' OR (time_to > '2019-06-30 10:30:00' AND time_to <= '2019-06-30 11:00:00')) AND (tables.id IN (1)) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ lib/validate_booking.rb:34
+Completed 422 Unprocessable Entity in 24ms (ActiveRecord: 7.6ms)
+
+
